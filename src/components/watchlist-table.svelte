@@ -37,8 +37,8 @@
 </script>
 
 {#if watchlistEntries.length > 0}
-    <div class="overflow-x-auto mx-auto w-4/5 mt-5">
-        <table class="table table-zebra">
+    <div class="overflow-x-auto mx-auto w-4/5 mt-5 h-3/5 overflow-y-scroll">
+        <table class="table table-zebra table-pin-rows table-pin-cols">
             <thead>
                 <tr>
                 <th>Stock Symbol</th>

@@ -5,7 +5,8 @@
     import Logout from "../../components/logout.svelte";
     import { Firework } from 'svelte-loading-spinners';
     import LoadingSpinner from "../../components/loading-spinner.svelte";
-
+    import Cookies from 'js-cookie';
+    
     let apiService = new ApiService();
     let watchlists = $state([]);
     let currentWatchlistName = $state();
@@ -33,7 +34,7 @@
     }
 </script>
 
-<div class="container flex flex-col w-full h-full mx-auto">
+<div class="container flex flex-col w-full h-screen mx-auto">
     <Logout />
     <div class="flex flex-row justify-around items-center my-10">
         <h1 class='text-3xl text-indigo-600 font-bold'>My Watchlists</h1>

@@ -5,14 +5,12 @@
     let apiService = new ApiService();
 	let username;
 	let password;
-    
 
     let loginStatus = true;
 
     async function login() {
         apiService.loginUser(username, password).then(loginResult => {
-            Cookies.set("authToken", loginResult.data.data["session-token"], { expires: 1 });
-            console.log(Cookies.get("authToken"));
+            Cookies.set("session", loginResult.data.data["session-token"], { expires: 1, path: "/" });
             window.location.href = "/watchlist";
         }).catch(error => {
             console.log(error);

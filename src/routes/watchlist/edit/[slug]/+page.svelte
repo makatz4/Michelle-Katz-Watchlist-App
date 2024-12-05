@@ -4,6 +4,7 @@
     import ApiService from "../../../../util/api-service";
     import { Firework } from "svelte-loading-spinners";
     import LoadingSpinner from "../../../../components/loading-spinner.svelte";
+    import Cookies from "js-cookie";
 
     let apiService = new ApiService();
     let watchlist = $state({
@@ -30,7 +31,7 @@
     }
 
     function saveWatchlist() {
-        apiService.updateWatchlist(watchlist).then(res => {
+        apiService.updateWatchlist(watchlist).then(() => {
             window.location.href = "/watchlist";
         }).catch(error => {
             console.log(error);
@@ -48,7 +49,7 @@
     }
 
     function deleteWatchlist() {
-        apiService.deleteWatchlist(watchlist.name).then(res => {
+        apiService.deleteWatchlist(watchlist.name).then(() => {
             window.location.href = '/watchlist';
         }).catch(error => {
             console.log(error);
