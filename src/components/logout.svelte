@@ -1,10 +1,12 @@
 <script>
     import ApiService from "../util/api-service";
+    import Cookies from 'js-cookie';
 
     let apiService = new ApiService();
 
     function logout() {
         apiService.logoutUser().then(res => {
+            Cookies.remove('session');
             window.location.href = "/";
         }).catch(error => {
             console.log(error);

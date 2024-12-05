@@ -6,7 +6,7 @@
     import { Firework } from 'svelte-loading-spinners';
     import LoadingSpinner from "../../components/loading-spinner.svelte";
     import Cookies from 'js-cookie';
-    
+
     let apiService = new ApiService();
     let watchlists = $state([]);
     let currentWatchlistName = $state();
@@ -17,7 +17,7 @@
         .getWatchlists()
         .then((res) => {
             watchlists = res.data.data.items;
-            currentWatchlistName = watchlists[0].name;
+            currentWatchlistName = watchlists[0]?.name;
             loading = false;
         })
         .catch((error) => {
