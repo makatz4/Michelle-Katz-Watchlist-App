@@ -7,9 +7,8 @@
     let { watchlistName = $bindable() } = $props();
     let watchlistEntries = $state([]);
    
-    onMount(() => {
+    onMount(async () => {
         updateWatchlist();
-        updateEntries();
     })
 
     $effect(() => {
@@ -20,6 +19,7 @@
     function updateWatchlist() {
         apiService.getWatchlist(watchlistName).then(res => {
             watchlistEntries = res.data.data["watchlist-entries"];
+            updateEntries();
         }).catch(error => {
             console.log(error);
         });
@@ -38,25 +38,24 @@
 
 <div class="overflow-x-auto mx-auto w-4/5 mt-5">
     <table class="table table-zebra">
-      <!-- head -->
-      <thead>
-        <tr>
-          <th>Stock Symbol</th>
-          <th>Bid Price</th>
-          <th>Ask Price</th>
-          <th>Last Price</th>
-        </tr>
-      </thead>
-      <tbody>
-        {#each watchlistEntries as entry}
+        <thead>
             <tr>
-                <td>{entry.symbol}</td>
-                <td>{entry.ask}</td>
-                <td>{entry.bid}</td>
-                <td>{entry.last}</td>
+            <th>Stock Symbol</th>
+            <th>Bid Price</th>
+            <th>Ask Price</th>
+            <th>Last Price</th>
             </tr>
-        {/each}
-      </tbody>
+        </thead>
+        <tbody>
+            {#each watchlistEntries as entry}
+                <tr>
+                    <td>{entry.symbol}</td>
+                    <td>{entry.ask}</td>
+                    <td>{entry.bid}</td>
+                    <td>{entry.last}</td>
+                </tr>
+            {/each}
+        </tbody>
     </table>
 </div>
 

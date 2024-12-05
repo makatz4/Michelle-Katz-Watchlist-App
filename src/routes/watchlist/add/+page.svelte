@@ -43,7 +43,7 @@
         <label class="input input-bordered input-md flex items-center gap-2 my-1">
             <input type="text" class="grow" placeholder="Watchlist name" bind:value={watchlist.name} />
         </label>
-        <label class="input input-bordered input-md flex items-center gap-2 my-1">
+        <label class="input input-bordered input-md flex items-center gap-2 my-1 shadow">
             <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 16 16"
@@ -59,7 +59,7 @@
         {#if searchResults.length > 0}
             <div class="border-solid border border-neutral-300 rounded-b-lg flex flex-col items-start h-26 overflow-scroll">
                 {#each searchResults as result}
-                    <button onclick={() => { addToWatchlist(result) }} class="w-full">{result.symbol}</button>
+                    <button onclick={() => { addToWatchlist(result) }} class="w-full hover:bg-indigo-300">{result.symbol}</button>
                 {/each}
             </div>
         {/if}
