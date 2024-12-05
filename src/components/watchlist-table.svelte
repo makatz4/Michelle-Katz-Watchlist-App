@@ -36,26 +36,32 @@
     }
 </script>
 
-<div class="overflow-x-auto mx-auto w-4/5 mt-5">
-    <table class="table table-zebra">
-        <thead>
-            <tr>
-            <th>Stock Symbol</th>
-            <th>Bid Price</th>
-            <th>Ask Price</th>
-            <th>Last Price</th>
-            </tr>
-        </thead>
-        <tbody>
-            {#each watchlistEntries as entry}
+{#if watchlistEntries.length > 0}
+    <div class="overflow-x-auto mx-auto w-4/5 mt-5">
+        <table class="table table-zebra">
+            <thead>
                 <tr>
-                    <td>{entry.symbol}</td>
-                    <td>{entry.ask}</td>
-                    <td>{entry.bid}</td>
-                    <td>{entry.last}</td>
+                <th>Stock Symbol</th>
+                <th>Bid Price</th>
+                <th>Ask Price</th>
+                <th>Last Price</th>
                 </tr>
-            {/each}
-        </tbody>
-    </table>
-</div>
+            </thead>
+            <tbody>
+                {#each watchlistEntries as entry}
+                    <tr>
+                        <td>{entry.symbol}</td>
+                        <td>{entry.ask}</td>
+                        <td>{entry.bid}</td>
+                        <td>{entry.last}</td>
+                    </tr>
+                {/each}
+            </tbody>
+        </table>
+    </div>
+{:else}
+    <div class="text-lg text-indigo-500 mx-auto mt-10">
+        Click the 'Edit current watchlist' button to add symbols!
+    </div>
+{/if}
 

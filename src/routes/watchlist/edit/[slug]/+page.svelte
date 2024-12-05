@@ -2,6 +2,8 @@
     import { onMount } from "svelte";
     import { page } from "$app/stores";
     import ApiService from "../../../../util/api-service";
+    import { Firework } from "svelte-loading-spinners";
+    import LoadingSpinner from "../../../../components/loading-spinner.svelte";
 
     let apiService = new ApiService();
     let watchlist = $state({
@@ -11,6 +13,7 @@
     let symbol = $state('');
     let searchResults = $state([]);
     let saveError = $state(false);
+    let loading = $state(true);
 
     onMount(() => {
         watchlist.name = decodeURI($page.url.pathname.split('/')[3]);
@@ -19,7 +22,8 @@
 
     function getWatchlist() {
         apiService.getWatchlist(watchlist.name).then(res => {
-            watchlist["watchlist-entries"] = res.data.data["watchlist-entries"];
+            watchlist["watchlist-entries"] = res.data.data["watchlist-entries"] || [];
+            loading = false;
         }).catch(error => {
             console.log(error);
         });
@@ -72,6 +76,7 @@
     </div>
     <div class="flex flex-row w-full items-start justify-around">
         <div>
+            {#if !loading}
             <h2 class="text-indigo-500 text-xl font-semibold">Watchlist Entries</h2>
             <ul>
                 {#each watchlist["watchlist-entries"] as entry, i}
@@ -81,6 +86,9 @@
                     </div>
                 {/each}
             </ul>
+            {:else}
+                <LoadingSpinner />
+            {/if}
         </div>
         <div>
             <h2 class="text-indigo-500 text-xl font-semibold">Add new symbol</h2>
