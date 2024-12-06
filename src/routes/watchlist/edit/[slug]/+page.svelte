@@ -2,10 +2,9 @@
     import { onMount } from "svelte";
     import { page } from "$app/stores";
     import ApiService from "../../../../util/api-service";
-    import { Firework } from "svelte-loading-spinners";
     import LoadingSpinner from "../../../../components/loading-spinner.svelte";
-    import Cookies from "js-cookie";
     import Search from "../../../../components/search.svelte";
+    import Logout from "../../../../components/logout.svelte";
 
     let apiService = new ApiService();
     let watchlist = $state({
@@ -39,7 +38,6 @@
         })
     }
 
-
     function deleteWatchlist() {
         apiService.deleteWatchlist(watchlist.name).then(() => {
             window.location.href = '/watchlist';
@@ -51,14 +49,9 @@
     function updateEntries(symbol) {
         watchlist["watchlist-entries"] = watchlist["watchlist-entries"].filter(s => s.symbol != symbol);
     }
-
-    // function search() {
-    //     apiService.searchSymbol(symbol).then(res => {
-    //         searchResults = res.data.data.items;
-    //     })
-    // }
 </script>
 
+<Logout />
 <div class="container">
     <div class="flex flex-row items-center justify-around">
         <h1 class="text-indigo-600 text-2xl m-10 font-bold">Edit Watchlist: {watchlist.name}</h1>

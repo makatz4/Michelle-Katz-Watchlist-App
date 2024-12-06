@@ -3,9 +3,7 @@
     import ApiService from "../../util/api-service";
     import WatchlistTable from "../../components/watchlist-table.svelte";
     import Logout from "../../components/logout.svelte";
-    import { Firework } from 'svelte-loading-spinners';
     import LoadingSpinner from "../../components/loading-spinner.svelte";
-    import Cookies from 'js-cookie';
 
     let apiService = new ApiService();
     let watchlists = $state([]);
@@ -17,6 +15,7 @@
         .getWatchlists()
         .then((res) => {
             watchlists = res.data.data.items;
+            watchlists.sort((a, b) => a.name.localeCompare(b.name));
             currentWatchlistName = watchlists[0]?.name;
             loading = false;
         })
@@ -60,7 +59,7 @@
             </select>
         </label>
        <WatchlistTable bind:watchlistName={currentWatchlistName} />
-    {:else if !loading} 
+    {:else if watchlists.length === 0 && !loading} 
         <div class="flex flex-col items-center">
             <h2 class="text-2xl text-indigo-500 mx-10 my-5 font-semibold">No watchlists to display</h2>
         </div>

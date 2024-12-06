@@ -12,7 +12,7 @@
     })
 
     $effect(() => {
-        onInterval(updateWatchlist(), 100);
+        updateWatchlist();
         onInterval(updateEntries, 5000);
     })
 
@@ -26,26 +26,26 @@
     }
 
     function updateEntries() {
-        for(let i = 0; i < watchlistEntries.length; i++) {
+        for(let i = 0; i < watchlistEntries?.length; i++) {
             apiService.getMarketData(watchlistEntries[i].symbol).then(res => {
                 watchlistEntries[i].ask = res.data.data.ask;
                 watchlistEntries[i].bid = res.data.data.bid;
                 watchlistEntries[i].last = res.data.data.last;
             })
         }
-        watchlistEntries.sort((a, b) => a.symbol.localeCompare(b.symbol));
+        watchlistEntries?.sort((a, b) => a.symbol.localeCompare(b.symbol));
     }
 </script>
 
-{#if watchlistEntries.length > 0}
+{#if watchlistEntries?.length > 0}
     <div class="overflow-x-auto mx-auto w-4/5 mt-5 h-3/5 overflow-y-scroll">
         <table class="table table-zebra table-pin-rows table-pin-cols">
             <thead>
                 <tr>
-                <th>Stock Symbol</th>
-                <th>Bid Price</th>
-                <th>Ask Price</th>
-                <th>Last Price</th>
+                    <th>Stock Symbol</th>
+                    <th>Bid Price</th>
+                    <th>Ask Price</th>
+                    <th>Last Price</th>
                 </tr>
             </thead>
             <tbody>
@@ -62,7 +62,7 @@
     </div>
 {:else}
     <div class="text-lg text-indigo-500 mx-auto mt-10">
-        Click the 'Edit current watchlist' button to add symbols!
+        Click the 'Edit current watchlist' button to add symbols to this watchlist!
     </div>
 {/if}
 

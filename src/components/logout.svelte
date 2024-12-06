@@ -5,7 +5,7 @@
     let apiService = new ApiService();
 
     function logout() {
-        apiService.logoutUser().then(res => {
+        apiService.logoutUser().then(() => {
             Cookies.remove('session');
             window.location.href = "/";
         }).catch(error => {

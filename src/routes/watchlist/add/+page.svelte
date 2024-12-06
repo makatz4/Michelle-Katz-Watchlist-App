@@ -2,6 +2,7 @@
     import { onMount } from "svelte";
     import ApiService from "../../../util/api-service";
     import Search from "../../../components/search.svelte";
+    import Logout from "../../../components/logout.svelte";
 
     let apiService = new ApiService();
 
@@ -13,12 +14,6 @@
     let searchResults = [];
     let saveError = false;
 
-    function search() {
-        apiService.searchSymbol(symbol).then(res => {
-            searchResults = res.data.data.items;
-        })
-    }
-
     function addToWatchlist(input) {
         watchlist["watchlist-entries"].push({
             'symbol': input.symbol,
@@ -29,7 +24,7 @@
     }
 
     function saveWatchlist() {
-        apiService.addNewWatchlist(watchlist).then(res => {
+        apiService.addNewWatchlist(watchlist).then(() => {
             window.location.href = "/watchlist";
         }).catch(error => {
             console.log(error);
@@ -38,7 +33,7 @@
     }
 
 </script>
-
+<Logout />
 <div class="flex items-center flex-col mt-10">
     <h1 class="text-2xl text-indigo-600">Add a new watchlist</h1>
     <div class="w-2/5">
