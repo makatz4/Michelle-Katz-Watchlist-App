@@ -2,12 +2,12 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 export default class ApiService {
-    BASE_URL = "https://api.cert.tastyworks.com";
-    SEARCH_URL = "https://api.tastyworks.com";
+    private BASE_URL = "https://api.cert.tastyworks.com";
+    private SEARCH_URL = "https://api.tastyworks.com";
 
-    session = Cookies.get("session");
+    private session = Cookies.get("session");
 
-    default_headers = {
+    private default_headers = {
         "Content-Type": "application/json",
         "Accept": "application/json",
         "Authorization": this.session || "",
