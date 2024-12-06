@@ -49,7 +49,7 @@
                 </svg>
                 <input type="password" class="grow " bind:value={password} placeholder="Password" />
             </label>
-            <button class="btn btn-primary w-3/5 my-1 shadow" onclick={login}>Log in</button>
+            <button class="btn btn-primary w-1/5 my-1 shadow" onclick={login}>Log in</button>
             {#if !loginStatus}
                 <p class="text-error">Login failed. Please try again.</p>
             {/if}

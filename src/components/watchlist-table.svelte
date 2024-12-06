@@ -33,6 +33,7 @@
                 watchlistEntries[i].last = res.data.data.last;
             })
         }
+        watchlistEntries.sort((a, b) => a.symbol.localeCompare(b.symbol));
     }
 </script>
 

@@ -24,6 +24,7 @@
     function getWatchlist() {
         apiService.getWatchlist(watchlist.name).then(res => {
             watchlist["watchlist-entries"] = res.data.data["watchlist-entries"] || [];
+            watchlist["watchlist-entries"] = watchlist["watchlist-entries"].sort((a, b) => a.symbol.localeCompare(b.symbol));
             loading = false;
         }).catch(error => {
             console.log(error);
@@ -46,6 +47,7 @@
         });
         symbol = '';
         searchResults = [];
+        watchlist["watchlist-entries"].sort((a, b) => a.symbol.localeCompare(b.symbol));
     }
 
     function deleteWatchlist() {
