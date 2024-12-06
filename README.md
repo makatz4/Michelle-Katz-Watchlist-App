@@ -4,7 +4,7 @@ This application was made using Svelte, Tailwind CSS, and DaisyUI
 
 ## To Run
 
-Run the following commands, open on localhost:5173 in your browser!
+Run the following commands, then open on localhost:5173 in your browser!
 
 ```bash
 npm install
